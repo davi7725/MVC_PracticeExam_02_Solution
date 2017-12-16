@@ -1,0 +1,59 @@
+﻿@model ServiceReference1.AuctionItem
+@{
+    ViewData["Title"] = "itempage";
+}
+
+<h2>itempage</h2>
+
+<label><h2>@Model.ItemNumber</h2></label><br />
+<label><h3>@Model.ItemDescription</h3></label><br />
+<label><h3>@Model.RatingPrice</h3></label><br />
+<label><h4>@Model.BidCustomName</h4></label> - <label><h4>@Model.BidPrice</h4></label> - <label><h4>@Model.BidTimestamp</h4></label><br />
+
+<br />
+<form method="post" name="bidForm" onsubmit="validateForm()">
+    <input type="hidden" name="partItem" value="@Model.ItemNumber" />
+    <input type="text" id="name" name="Name" /><br />
+    <input type="text" id="phone" name="Phone" /><br />
+    <input type="text" id="bid" name="Bid"<br />
+    <input type="submit" />
+</form>
+
+<script>
+    function validateForm()
+    {
+        var nameValid = true;
+        var phoneValid = true;
+        var bidValid = true;
+
+        var nameValue = document.forms["bidForm"]["Name"].value;
+        var phoneValue = document.forms["bidForm"]["Phone"].value;
+        var bidValue = document.forms["bidForm"]["Bid"].value;
+
+        if (nameValue.length < 4)
+            nameValid = false;
+        if (phoneValue.length != 8 || isOnlyDigits(phoneValue) == false)
+            phoneValid = false;
+        if (isOnlyDigits(bidValue) == false || bidValue.length <= 0)
+            bidValid = false;
+        
+        if ((nameValid & phoneValid & bidValid) == false)
+        {
+            event.preventDefault(); 
+            alert("Please check input");
+        }
+    }
+
+    function isOnlyDigits(value)
+    {
+        var numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+        for (var i = 0; i < value.length; i++)
+        {
+            if (numbers.indexOf(value[i]) === -1)
+                return false;
+        }
+
+        return true;
+    }
+</script>

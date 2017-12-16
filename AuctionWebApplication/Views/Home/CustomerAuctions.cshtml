@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Bid>
+@{
+    ViewData["Title"] = "CustomerAuctions";
+}
+
+<table>
+    @foreach(Bid b in Model)
+    {
+        <tr>
+            <td>@b.ItemNumber</td>
+            <td>@b.Bidder</td>
+            <td>@b.BidPrice</td>
+            <td>@b.BidTime</td>
+        </tr>
+
+    }
+
+</table>

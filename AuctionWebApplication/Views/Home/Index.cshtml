@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ServiceReference1.AuctionItem>
+@{
+    ViewData["Title"] = "List of items";
+}
+
+<table>
+    @foreach (ServiceReference1.AuctionItem ai in Model)
+    {
+        <tr>
+            <td><a href="http://localhost:23059/Home/ItemPage?partItem=@ai.ItemNumber">@ai.ItemNumber</a></td>
+            <td>@ai.ItemDescription</td>
+            <td>@ai.RatingPrice</td>
+        </tr>
+    }
+</table>
